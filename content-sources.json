@@ -1,0 +1,129 @@
+{
+  "_doc": "Source citations for every customer-facing claim, testimonial, and stat on the Miranda AC Replacement landing page. Required by AGENTS.md Builds Lane R6 (Content Authenticity & FTC).",
+  "customer_id": "2ada2261-a19a-4a75-a3d3-e1fd0f75a901",
+  "primary_source": "https://www.mirandahomeservices.com",
+  "captured_at": "2026-06-01T17:35Z",
+  "testimonials": [
+    {
+      "name": "John Conti",
+      "text": "Always prompt and reliable. Even on Saturdays. Great tech. I'll recommend Miranda to everyone. They truly are the BEST.",
+      "source": "Google review",
+      "verified_at": "https://www.mirandahomeservices.com/",
+      "extraction_method": "Real review imported from Trustindex Google reviews widget on mirandahomeservices.com homepage. AC-relevance: generic positive customer experience (no specific service called out — safe for AC LP)."
+    },
+    {
+      "name": "Bette Goodwin",
+      "text": "Tim did a great job. Very personable, professional, knowledgeable, thorough and super friendly. Did an outstanding job. Thank you Miranda for having an awesome tech.",
+      "source": "Google review",
+      "verified_at": "https://www.mirandahomeservices.com/",
+      "extraction_method": "Real review imported from Trustindex Google reviews widget on mirandahomeservices.com homepage. AC-relevance: generic positive technician experience (no specific service called out — safe for AC LP). Period after 'friendly' added to match source punctuation style; original used comma."
+    },
+    {
+      "name": "Michael Groves",
+      "text": "Miranda is always very thorough and professional. Highly recommend from office personnel to techs in the field.",
+      "source": "Google review",
+      "verified_at": "https://www.mirandahomeservices.com/",
+      "extraction_method": "Real review imported from Trustindex Google reviews widget on mirandahomeservices.com homepage. AC-relevance: generic positive technician experience (no specific service called out — safe for AC LP)."
+    }
+  ],
+  "stats": [
+    {
+      "claim": "45+ years of service",
+      "source": "Miranda Home Services 'Family-Owned Since 1981' branding repeated on homepage, ac-replacement page, and about page",
+      "verified_at": "https://www.mirandahomeservices.com/",
+      "method": "2026 - 1981 = 45 years"
+    },
+    {
+      "claim": "Family-Owned Since 1981",
+      "source": "Miranda Home Services 'Family-Owned Since 1981' tagline on homepage hero and footer",
+      "verified_at": "https://www.mirandahomeservices.com/"
+    },
+    {
+      "claim": "5-star Google rating",
+      "source": "Trustindex Google reviews widget on mirandahomeservices.com — all 9 reviews captured display 5 stars",
+      "verified_at": "https://www.mirandahomeservices.com/"
+    },
+    {
+      "claim": "$0 in-home Comfort Advisor visit / Free in-home estimate",
+      "source": "'Free Estimates' listed as feature on mirandahomeservices.com homepage",
+      "verified_at": "https://www.mirandahomeservices.com/"
+    }
+  ],
+  "licenses": [
+    {
+      "claim": "FL CFC1427227",
+      "source": "Stated on mirandahomeservices.com footer and about page (plumbing license)",
+      "verified_at": "https://www.mirandahomeservices.com/"
+    },
+    {
+      "claim": "FL CAC1815486",
+      "source": "Stated on mirandahomeservices.com footer and about page (HVAC license)",
+      "verified_at": "https://www.mirandahomeservices.com/"
+    }
+  ],
+  "partnerships": [
+    {
+      "claim": "Ruud Pro Partner",
+      "source": "Ruud Pro Partner logo displayed on mirandahomeservices.com homepage (/wp-content/uploads/2026/03/RuudProPartner_RGB-scaled-1-1024x456.jpg)",
+      "verified_at": "https://www.mirandahomeservices.com/"
+    },
+    {
+      "claim": "GreenSky financing on approved credit",
+      "source": "GreenSky logo displayed on mirandahomeservices.com homepage (/wp-content/uploads/2026/02/greensky.webp); financing on approved credit is GreenSky standard terms.",
+      "verified_at": "https://www.mirandahomeservices.com/"
+    }
+  ],
+  "service_areas": [
+    {
+      "claim": "Port St. Lucie, Stuart, Jupiter, Palm Beach Gardens, Jensen Beach, Palm City, Hobe Sound, Fort Pierce, Vero Beach, Sebastian, Tequesta, Hutchinson Island",
+      "source": "Miranda Home Services serves the Treasure Coast — areas listed on mirandahomeservices.com homepage and individual service pages",
+      "verified_at": "https://www.mirandahomeservices.com/"
+    }
+  ],
+  "images": [
+    {
+      "file": "public/images/ac-system-install.jpg",
+      "source": "https://www.mirandahomeservices.com/wp-content/uploads/2026/03/HVAC.jpg",
+      "license": "Customer-owned asset (Miranda Home Services published on their own marketing site)",
+      "rationale": "Authentic photo of a Miranda AC installation — beats AI-generated imagery for trust/Content Authenticity (USER.md rule, Pacific Pavers 2026-05-28 doctrine)."
+    },
+    {
+      "file": "public/images/miranda-truck.jpg",
+      "source": "https://www.mirandahomeservices.com/wp-content/uploads/2026/03/mpac-service.jpg",
+      "license": "Customer-owned asset (Miranda Home Services published on their own marketing site)"
+    },
+    {
+      "file": "public/images/miranda-tech.jpg",
+      "source": "https://www.mirandahomeservices.com/wp-content/uploads/2026/03/mpac_pl12.jpg",
+      "license": "Customer-owned asset (Miranda Home Services published on their own marketing site)"
+    },
+    {
+      "file": "public/images/comfort-advisor.jpg",
+      "source": "https://www.mirandahomeservices.com/wp-content/uploads/2026/03/T7409220-min.jpg",
+      "license": "Customer-owned asset (Miranda Home Services published on their own marketing site)"
+    },
+    {
+      "file": "public/images/ruud-pro-partner.jpg",
+      "source": "https://www.mirandahomeservices.com/wp-content/uploads/2026/03/RuudProPartner_RGB-scaled-1-1024x456.jpg",
+      "license": "Ruud Pro Partner brand badge — Miranda is an authorized Ruud Pro Partner per their own marketing site"
+    },
+    {
+      "file": "public/images/logo.png",
+      "source": "https://www.mirandahomeservices.com/wp-content/uploads/2022/09/Miranda-Plumbing-and-Air-Conditioning-logo-scaled.png",
+      "license": "Customer brand asset"
+    }
+  ],
+  "intentional_removals": [
+    {
+      "claim": "10,000+ systems installed",
+      "reason": "Could not verify on mirandahomeservices.com. Replaced with 'Family-Owned Since 1981' stat (verifiable) per QA rework attempt 1 feedback."
+    }
+  ],
+  "rework_history": [
+    {
+      "attempt": 1,
+      "date": "2026-06-01",
+      "qa_feedback": "Fabricated testimonials (Sarah M./David R./Jennifer K.) — replaced with 3 real Google reviews from Miranda's own site. 10K+ stat unverified — removed. content-sources.json file did not exist — created."
+    }
+  ]
+}

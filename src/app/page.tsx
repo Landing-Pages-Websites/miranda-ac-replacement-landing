@@ -232,16 +232,18 @@ function LeadForm({ id, onSubmit, submitted, submitting }: {
   return (
     <form ref={formRef} onSubmit={handleFormSubmit} className="space-y-4" noValidate>
       <div className="grid grid-cols-2 gap-3">
-        <input id={`firstName-${id}`} name="firstName" type="text" placeholder="First Name" required className={inputBase} />
-        <input id={`lastName-${id}`} name="lastName" type="text" placeholder="Last Name" required className={inputBase} />
+        <input id={`firstName-${id}`} name="firstName" type="text" placeholder="First Name" required autoComplete="given-name" minLength={1} className={inputBase} />
+        <input id={`lastName-${id}`} name="lastName" type="text" placeholder="Last Name" required autoComplete="family-name" minLength={1} className={inputBase} />
       </div>
-      <input id={`email-${id}`} name="email" type="email" placeholder="Email Address" required className={inputBase} />
+      <input id={`email-${id}`} name="email" type="email" placeholder="Email Address" required pattern="[^\s@]+@[^\s@]+\.[^\s@]+" autoComplete="email" className={inputBase} />
       <div>
         <input
           id={`phone-${id}`}
           name="phone"
           type="tel"
           inputMode="numeric"
+          autoComplete="tel"
+          pattern="\(\d{3}\)\s\d{3}-\d{4}"
           placeholder="Phone Number"
           required
           className={`${inputBase} ${phoneError ? "border-red-400" : ""}`}
@@ -454,14 +456,14 @@ export default function MirandaLandingPage() {
                 </div>
 
                 <div className="flex flex-col sm:flex-row flex-wrap gap-3">
-                  <a href="#contact" className="inline-flex items-center justify-center text-center bg-accent hover:bg-accent-light text-white font-bold px-7 py-4 rounded-lg text-base sm:text-lg transition-all duration-300 transform hover:scale-105 shadow-lg shadow-accent/30 whitespace-nowrap">
-                    Get My Free AC Replacement Quote
-                  </a>
                   <a href={PHONE_HREF} className="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white font-semibold px-6 py-4 rounded-lg text-base sm:text-lg transition-all duration-300 border border-white/20 whitespace-nowrap">
                     <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
                     </svg>
                     Call {PHONE}
+                  </a>
+                  <a href="#contact" className="inline-flex items-center justify-center text-center bg-accent hover:bg-accent-light text-white font-bold px-7 py-4 rounded-lg text-base sm:text-lg transition-all duration-300 transform hover:scale-105 shadow-lg shadow-accent/30 whitespace-nowrap">
+                    Get My Free AC Replacement Quote
                   </a>
                 </div>
 
@@ -488,6 +490,19 @@ export default function MirandaLandingPage() {
                       {badge}
                     </div>
                   ))}
+                </div>
+
+                {/* Trust strip: Ruud Pro Partner badge */}
+                <div className="flex items-center gap-4 pt-2">
+                  <div className="bg-white rounded-lg px-3 py-2 shadow-md">
+                    <img
+                      src="/images/ruud-pro-partner.jpg"
+                      alt="Ruud Pro Partner — Miranda Plumbing & Air authorized installer"
+                      className="h-10 sm:h-12 w-auto"
+                      loading="lazy"
+                    />
+                  </div>
+                  <p className="text-white/70 text-sm">Authorized Ruud Pro Partner — every install is factory-warrantied and registered before we leave.</p>
                 </div>
               </div>
 
@@ -534,6 +549,14 @@ export default function MirandaLandingPage() {
                 </div>
               </div>
               <div className="lg:col-span-5 reveal">
+                <div className="mb-6 rounded-2xl overflow-hidden shadow-lg border border-gray-100">
+                  <img
+                    src="/images/miranda-truck.jpg"
+                    alt="Miranda Plumbing & Air service truck on the Treasure Coast, fully stocked for same-week AC installation"
+                    className="w-full h-auto object-cover"
+                    loading="lazy"
+                  />
+                </div>
                 <div className="bg-gradient-to-br from-blue-50 to-white rounded-2xl p-7 sm:p-8 border border-gray-100 shadow-sm">
                   <h3 className="text-xl font-bold font-[family-name:var(--font-heading)] text-dark mb-5">7 Signs It&apos;s Time to Replace</h3>
                   <ul className="space-y-3">
@@ -565,7 +588,7 @@ export default function MirandaLandingPage() {
           <div className="max-w-5xl mx-auto px-4 sm:px-6">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
               <StatCounter end={45} suffix="+" label="Years of Service" />
-              <StatCounter end={10000} suffix="+" label="Systems Installed" />
+              <StatCounter end={1981} suffix="" label="Family-Owned Since" />
               <StatCounter end={5} suffix="★" label="Google Rating" />
               <StatCounter end={0} suffix="$" label="Free In-Home Estimate" />
             </div>
@@ -580,6 +603,14 @@ export default function MirandaLandingPage() {
               <h2 className="text-3xl sm:text-4xl font-bold font-[family-name:var(--font-heading)] text-dark">Ruud Replacement Systems Sized for Florida Homes</h2>
               <p className="mt-4 text-gray-500 max-w-3xl mx-auto">Miranda is a Ruud Pro Partner. We install central air, heat pumps, and ductless mini-splits sized correctly for your home with a Manual J load calculation — never an over-sized eyeball quote. Every replacement is code-compliant, permit-pulled when required, and warranty-registered before we leave.</p>
             </div>
+            <div className="reveal mb-10 max-w-5xl mx-auto rounded-2xl overflow-hidden shadow-lg border border-gray-100">
+              <img
+                src="/images/ac-system-install.jpg"
+                alt="Miranda Plumbing & Air installer working on a Ruud central AC condenser at a Treasure Coast home"
+                className="w-full h-auto object-cover"
+                loading="lazy"
+              />
+            </div>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 stagger">
               <ServiceCard icon={<IconAC />} title="Central AC Replacement" description="Full central AC system swap-out — condenser, air handler, line set, and thermostat. Ruud Achiever and Endeavor series in SEER2 14.3 – 20+ for serious efficiency gains." />
               <ServiceCard icon={<IconBolt />} title="Heat Pump Replacement" description="Energy-efficient heat pump systems for year-round comfort — cooling in summer, supplemental heat on the rare Treasure Coast cold snap. Single-stage and variable-speed options." />
@@ -589,10 +620,15 @@ export default function MirandaLandingPage() {
               <ServiceCard icon={<IconDroplet />} title="Smart Thermostat Integration" description="Wi-Fi smart thermostats (Ecobee, Honeywell, Nest) installed and configured with your new system. App control, scheduling, and FPL energy-saver program enrollment." />
             </div>
             <div className="text-center mt-10 reveal">
-              <a href="#contact" className="inline-flex items-center justify-center bg-primary hover:bg-primary-light text-white font-bold px-8 py-4 rounded-lg text-lg transition-all duration-300 transform hover:scale-105">
-                Get My Free AC Replacement Quote
-              </a>
-              <p className="mt-3 text-gray-400 text-sm">Or call <a href={PHONE_HREF} className="text-primary font-semibold hover:underline">{PHONE}</a></p>
+              <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                <a href={PHONE_HREF} className="inline-flex items-center justify-center gap-2 bg-white hover:bg-gray-100 text-primary border-2 border-primary font-bold px-6 py-4 rounded-lg text-base transition-all duration-300">
+                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" /></svg>
+                  Call {PHONE}
+                </a>
+                <a href="#contact" className="inline-flex items-center justify-center bg-primary hover:bg-primary-light text-white font-bold px-8 py-4 rounded-lg text-base transition-all duration-300 transform hover:scale-105">
+                  Get My Free AC Replacement Quote
+                </a>
+              </div>
             </div>
           </div>
         </section>
@@ -610,9 +646,15 @@ export default function MirandaLandingPage() {
                 <p className="text-gray-600 leading-relaxed mb-6">
                   We don&apos;t do high-pressure quotes. You get a clear, written estimate with options, financing terms, and an installation timeline. Most replacements happen <strong>within 3 – 7 days</strong> of approval. Old system removed and recycled, new system installed code-compliant, refrigerant charged correctly, thermostat calibrated, and warranty paperwork registered before we leave.
                 </p>
-                <a href="#contact" className="inline-flex items-center justify-center bg-accent hover:bg-accent-light text-white font-bold px-7 py-4 rounded-lg text-base transition-all duration-300 transform hover:scale-105 shadow-lg shadow-accent/25">
-                  Schedule My Free Comfort Advisor Visit
-                </a>
+                <div className="flex flex-col sm:flex-row gap-3">
+                  <a href={PHONE_HREF} className="inline-flex items-center justify-center gap-2 bg-white hover:bg-gray-100 text-primary border-2 border-primary font-bold px-6 py-4 rounded-lg text-base transition-all duration-300">
+                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" /></svg>
+                    Call {PHONE}
+                  </a>
+                  <a href="#contact" className="inline-flex items-center justify-center bg-accent hover:bg-accent-light text-white font-bold px-7 py-4 rounded-lg text-base transition-all duration-300 transform hover:scale-105 shadow-lg shadow-accent/25">
+                    Schedule My Free Comfort Advisor Visit
+                  </a>
+                </div>
               </div>
               <div className="reveal">
                 <div className="bg-gradient-to-br from-blue-50 to-white rounded-2xl p-7 sm:p-9 border border-gray-100 shadow-sm">
@@ -679,12 +721,19 @@ export default function MirandaLandingPage() {
               </div>
               {/* Right column: trust image / credentials card */}
               <div className="reveal">
-                <div className="bg-gradient-to-br from-primary to-dark-soft rounded-2xl p-8 sm:p-10 text-white">
-                  <h3 className="text-2xl font-bold font-[family-name:var(--font-heading)] mb-6">Your New System, Done Right</h3>
+                <div className="rounded-2xl overflow-hidden shadow-2xl border border-gray-100">
+                  <img
+                    src="/images/comfort-advisor.jpg"
+                    alt="Miranda Plumbing & Air technician arriving for an in-home Comfort Advisor visit on the Treasure Coast"
+                    className="w-full h-auto object-cover"
+                    loading="lazy"
+                  />
+                </div>
+                <div className="mt-6 bg-gradient-to-br from-primary to-dark-soft rounded-2xl p-8 sm:p-10 text-white">
+                  <h3 className="text-2xl font-bold font-[family-name:var(--font-heading)] mb-6">Your New AC, Done Right</h3>
                   <div className="space-y-5">
                     {[
                       { num: "45+", label: "Years installing on the Treasure Coast" },
-                      { num: "10K+", label: "New systems installed across Florida" },
                       { num: "$0", label: "For your in-home Comfort Advisor visit" },
                       { num: "5★", label: "Google-rated installation experience" },
                     ].map((stat) => (
@@ -711,6 +760,14 @@ export default function MirandaLandingPage() {
               <p className="text-primary font-semibold text-sm uppercase tracking-wider mb-2">A No-Pressure Install Process</p>
               <h2 className="text-3xl sm:text-4xl font-bold font-[family-name:var(--font-heading)] text-dark">From First Call to Installed System in 3 Steps</h2>
             </div>
+            <div className="reveal mb-12 max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-lg border border-gray-100">
+              <img
+                src="/images/miranda-tech.jpg"
+                alt="Miranda Plumbing & Air technician completing a new central AC installation in Port St. Lucie"
+                className="w-full h-auto object-cover"
+                loading="lazy"
+              />
+            </div>
             <div className="grid md:grid-cols-3 gap-8 stagger">
               {[
                 { step: "1", title: "Free Comfort Advisor Visit", desc: "We come to your home, measure, run a Manual J load calc, and listen to what you actually need. No pressure, no scripted pitch." },
@@ -725,10 +782,15 @@ export default function MirandaLandingPage() {
               ))}
             </div>
             <div className="text-center mt-10 reveal">
-              <a href="#contact" className="inline-flex items-center justify-center bg-accent hover:bg-accent-light text-white font-bold px-8 py-4 rounded-lg text-lg transition-all duration-300 transform hover:scale-105">
-                Schedule My Free Comfort Advisor Visit
-              </a>
-              <p className="mt-3 text-gray-400 text-sm">Or call <a href={PHONE_HREF} className="text-primary font-semibold hover:underline">{PHONE}</a></p>
+              <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                <a href={PHONE_HREF} className="inline-flex items-center justify-center gap-2 bg-white hover:bg-gray-100 text-primary border-2 border-primary font-bold px-6 py-4 rounded-lg text-base transition-all duration-300">
+                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" /></svg>
+                  Call {PHONE}
+                </a>
+                <a href="#contact" className="inline-flex items-center justify-center bg-accent hover:bg-accent-light text-white font-bold px-8 py-4 rounded-lg text-base transition-all duration-300 transform hover:scale-105">
+                  Schedule My Free Comfort Advisor Visit
+                </a>
+              </div>
             </div>
           </div>
         </section>
@@ -742,9 +804,9 @@ export default function MirandaLandingPage() {
             </div>
             <div className="grid md:grid-cols-3 gap-6 stagger">
               {[
-                { name: "Sarah M.", text: "Our AC died in July and Miranda had a Comfort Advisor at the house the next morning. Clear quote, financing through GreenSky, and the new Ruud system was installed three days later. House feels different — cooler, drier, quieter.", rating: 5 },
-                { name: "David R.", text: "Replaced our 14-year-old water heater with a tankless unit. Installer pulled the permit, did the gas-line work, and walked us through the warranty before he left. Endless hot water now and our gas bill actually dropped.", rating: 5 },
-                { name: "Jennifer K.", text: "We had Miranda install whole-home filtration plus a softener. The free water test at the in-home visit sold us — we had no idea our water was that hard. Skin and dishes look completely different now.", rating: 5 },
+                { name: "John Conti", text: "Always prompt and reliable. Great tech!", rating: 5, source: "Google" },
+                { name: "Bette Goodwin", text: "Tim did a great job. Very personable, professional, knowledgeable, thorough and super friendly. Did an outstanding job. Thank you Miranda for having an awesome tech.", rating: 5, source: "Google" },
+                { name: "Michael Groves", text: "Miranda is always very thorough and professional. Highly recommend from office personnel to techs in the field.", rating: 5, source: "Google" },
               ].map((review) => (
                 <div key={review.name} className="reveal bg-gray-50 rounded-2xl p-6 sm:p-8 border border-gray-100">
                   <div className="flex gap-1 mb-4">
@@ -756,7 +818,7 @@ export default function MirandaLandingPage() {
                   </div>
                   <p className="text-gray-600 leading-relaxed mb-4">&ldquo;{review.text}&rdquo;</p>
                   <p className="font-semibold text-dark">{review.name}</p>
-                  <p className="text-sm text-gray-400">Verified Customer</p>
+                  <p className="text-sm text-gray-400">Verified {review.source} review</p>
                 </div>
               ))}
             </div>
@@ -779,10 +841,15 @@ export default function MirandaLandingPage() {
               ))}
             </div>
             <div className="mt-10 reveal">
-              <a href="#contact" className="inline-flex items-center justify-center bg-primary hover:bg-primary-light text-white font-bold px-8 py-4 rounded-lg text-lg transition-all duration-300 transform hover:scale-105">
-                Schedule a Visit in Your Area
-              </a>
-              <p className="mt-3 text-gray-400 text-sm">Or call <a href={PHONE_HREF} className="text-primary font-semibold hover:underline">{PHONE}</a></p>
+              <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                <a href={PHONE_HREF} className="inline-flex items-center justify-center gap-2 bg-white hover:bg-gray-100 text-primary border-2 border-primary font-bold px-6 py-4 rounded-lg text-base transition-all duration-300">
+                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" /></svg>
+                  Call {PHONE}
+                </a>
+                <a href="#contact" className="inline-flex items-center justify-center bg-primary hover:bg-primary-light text-white font-bold px-8 py-4 rounded-lg text-base transition-all duration-300 transform hover:scale-105">
+                  Schedule a Visit in Your Area
+                </a>
+              </div>
             </div>
           </div>
         </section>
