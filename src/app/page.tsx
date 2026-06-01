@@ -304,7 +304,7 @@ function LeadForm({ id, onSubmit, submitted, submitting }: {
 
       <button
         type="button"
-        onClick={() => formRef.current?.requestSubmit()}
+        onClick={runValidationAndSubmit}
         disabled={submitting}
         className="w-full py-4 bg-accent hover:bg-accent-light text-white font-bold text-lg rounded-lg transition-all duration-300 transform hover:scale-[1.02] disabled:opacity-60 disabled:cursor-not-allowed shadow-lg shadow-accent/25"
       >
