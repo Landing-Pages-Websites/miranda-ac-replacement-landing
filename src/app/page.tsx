@@ -45,7 +45,7 @@ function useCounter(end: number, duration = 2000, start = false) {
   return count;
 }
 
-function StatCounter({ end, suffix = "", label }: { end: number; suffix?: string; label: string }) {
+function StatCounter({ end, suffix = "", prefix = "", label, separator = true, staticText }: { end: number; suffix?: string; prefix?: string; label: string; separator?: boolean; staticText?: string }) {
   const [isVisible, setIsVisible] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
   const count = useCounter(end, 2000, isVisible);
@@ -55,10 +55,17 @@ function StatCounter({ end, suffix = "", label }: { end: number; suffix?: string
     return () => observer.disconnect();
   }, []);
   return (
+    staticText !== undefined ? (
+      <div ref={ref} className="text-center">
+        <div className="text-4xl sm:text-5xl font-bold text-white font-[family-name:var(--font-heading)]">{staticText}</div>
+        <div className="mt-2 text-sm sm:text-base text-white/70 uppercase tracking-wider">{label}</div>
+      </div>
+    ) : (
     <div ref={ref} className="text-center">
-      <div className="text-4xl sm:text-5xl font-bold text-white font-[family-name:var(--font-heading)]">{count.toLocaleString()}{suffix}</div>
+      <div className="text-4xl sm:text-5xl font-bold text-white font-[family-name:var(--font-heading)]">{prefix}{separator ? count.toLocaleString() : count}{suffix}</div>
       <div className="mt-2 text-sm sm:text-base text-white/70 uppercase tracking-wider">{label}</div>
     </div>
+    )
   );
 }
 
@@ -588,9 +595,9 @@ export default function MirandaLandingPage() {
           <div className="max-w-5xl mx-auto px-4 sm:px-6">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
               <StatCounter end={45} suffix="+" label="Years of Service" />
-              <StatCounter end={1981} suffix="" label="Family-Owned Since" />
+              <StatCounter end={1981} separator={false} label="Family-Owned Since" />
               <StatCounter end={5} suffix="★" label="Google Rating" />
-              <StatCounter end={0} suffix="$" label="Free In-Home Estimate" />
+              <StatCounter end={0} staticText="Free" label="In-Home Estimate" />
             </div>
           </div>
         </section>
@@ -743,10 +750,15 @@ export default function MirandaLandingPage() {
                       </div>
                     ))}
                   </div>
-                  <a href="#contact" className="mt-8 inline-flex items-center justify-center w-full bg-accent hover:bg-accent-light text-white font-bold py-4 rounded-lg transition-all duration-300 text-lg">
-                    Schedule My Free Comfort Advisor Visit
-                  </a>
-                  <p className="text-center mt-3 text-white/60 text-sm">Or call <a href={PHONE_HREF} className="text-blue-300 hover:underline">{PHONE}</a></p>
+                  <div className="mt-8 flex flex-col sm:flex-row gap-3">
+                    <a href={PHONE_HREF} className="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white border border-white/30 font-bold px-5 py-4 rounded-lg transition-all duration-300 flex-1">
+                      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" /></svg>
+                      Call {PHONE}
+                    </a>
+                    <a href="#contact" className="inline-flex items-center justify-center bg-accent hover:bg-accent-light text-white font-bold px-5 py-4 rounded-lg transition-all duration-300 flex-1">
+                      Get My Free AC Replacement Quote
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
