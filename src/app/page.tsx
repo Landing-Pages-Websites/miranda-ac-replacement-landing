@@ -146,9 +146,12 @@ function LeadForm({ id, onSubmit, submitted, submitting }: {
   const [timeline, setTimeline] = useState("");
   const [timelineError, setTimelineError] = useState("");
   const formRef = useRef<HTMLFormElement>(null);
+  // Local ref guard — prevents double-call from the same render frame even
+  // when React hasn't applied `submitting=true` yet.
+  const localInFlight = useRef(false);
 
   const runValidationAndSubmit = () => {
-    if (submitting || submitted) return;
+    if (localInFlight.current || submitting || submitted) return;
     const form = formRef.current;
     if (!form) return;
 
@@ -188,6 +191,7 @@ function LeadForm({ id, onSubmit, submitted, submitting }: {
     const qualified = isHomeowner === "Yes";
     const disqualification_reason = qualified ? null : "not_homeowner";
 
+    localInFlight.current = true;
     onSubmit({
       firstName,
       lastName,
@@ -322,6 +326,9 @@ export default function MirandaLandingPage() {
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [showFloating, setShowFloating] = useState(false);
+  // Synchronous ref guard — protects against same-tick rapid clicks where
+  // React batches `setSubmitting(true)` and the next click reads the stale `false`.
+  const inFlightRef = useRef(false);
 
   // Show floating CTA after scrolling past hero
   useEffect(() => {
@@ -333,7 +340,10 @@ export default function MirandaLandingPage() {
   }, []);
 
   const handleFormSubmit = async (data: Record<string, unknown>) => {
-    if (submitting) return;
+    // Rapid-click guard: synchronous ref check fires BEFORE the next setState
+    // batch is applied, so 5 same-tick clicks now result in exactly 1 event.
+    if (inFlightRef.current || submitted) return;
+    inFlightRef.current = true;
     setSubmitting(true);
     try {
       await submit(data);
@@ -343,6 +353,8 @@ export default function MirandaLandingPage() {
       alert("Something went wrong. Please try again or call us directly.");
     } finally {
       setSubmitting(false);
+      // Do NOT clear inFlightRef on error — we don't want a duplicate submit
+      // even after a failure. The user can refresh / call us directly.
     }
   };
 
