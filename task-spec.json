@@ -1,0 +1,23 @@
+{
+  "client": "Miranda Plumbing & Air",
+  "task_id": "aacd4d33-41bb-451c-a14f-a412fa3bcc76",
+  "focus": "AC Replacement",
+  "ad_platform": "google",
+  "phone": "772-878-5908",
+  "phone_routing_note": "Spec says client wants a new dedicated CTM tracked number — using existing 772-878-5908 as placeholder until client provides new CTM number.",
+  "form_fields": ["firstName", "lastName", "email", "phone", "isHomeowner", "serviceTimeline"],
+  "qualifying_question": "isHomeowner (Yes/No) — disqualified leads (No) STILL submit per AGENTS Builds Lane Rule 1",
+  "brand": {
+    "primary": "#043172",
+    "secondary": "#205DF5",
+    "accent": "#b30000",
+    "fonts": ["Poppins", "Outfit"]
+  },
+  "tracking": {
+    "site_id": "529f83af-a4e3-47ca-9cfc-c68f0388db1e",
+    "site_key": "c1oonazi5u9kxj4e",
+    "gtm_container_id": "GTM-NSBW6QX9",
+    "customer_id": "2ada2261-a19a-4a75-a3d3-e1fd0f75a901"
+  },
+  "subdomain_note": "TBD — task did not specify subdomain. Suggested: ac.mirandahomeservices.com. Customer-facing subdomain must be set up by director/DNS owner; deploy serves preview vercel.app URL until then."
+}
