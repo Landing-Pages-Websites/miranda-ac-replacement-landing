@@ -426,9 +426,9 @@ export default function MirandaLandingPage() {
           <div className="absolute bottom-0 left-0 w-80 h-80 bg-accent/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/3" />
 
           <div className="relative max-w-7xl mx-auto px-4 sm:px-6 py-12 sm:py-20 lg:py-24">
-            <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-start">
+            <div className="grid lg:grid-cols-2 gap-10 lg:gap-20 xl:gap-28 items-start">
               {/* Left: Copy */}
-              <div className="text-white space-y-6">
+              <div className="text-white space-y-6 lg:max-w-xl lg:pr-4">
                 <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm text-white/90 text-sm font-medium px-4 py-2 rounded-full border border-white/10">
                   <svg className="w-4 h-4 text-green-400" fill="currentColor" viewBox="0 0 20 20"><circle cx="10" cy="10" r="5" /></svg>
                   Free in-home Comfort Advisor visit · Treasure Coast since 1981
